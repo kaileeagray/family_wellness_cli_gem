@@ -1,5 +1,3 @@
-require "fargo_fitness_daily/version"
-
-module FargoFitnessDaily
-  # Your code goes here...
-end
+#this file acts as my environment
+require_relative "./fargo_fitness_daily/version"
+require_relative './fargo_fitness_daily/cli'

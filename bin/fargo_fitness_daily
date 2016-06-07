@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/fargo_fitness_daily'
+
+FargoFitnessDaily::CLI.new.call
