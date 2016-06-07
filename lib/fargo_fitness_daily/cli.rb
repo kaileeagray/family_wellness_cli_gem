@@ -12,14 +12,9 @@ class FargoFitnessDaily::CLI
     #get classes from sites - this is fake, for now
     #how will I get this data?
     puts "Today's fitness classes in Fargo:"
-    puts <<-DOC.gsub /^\s*/, ""
-      1. Raw Groove - Family Wellness - 8 AM
-      2. Connective Tissue Restorative - Sacred Earth - 11 AM
-      3. Hot Detox Yoga - Mojo - 4 PM
-      4. Dance Mixx - Jazzercise Fargo The PRACS Building - 5:45 PM
-      5. Restorative - Mojo - 7 PM
-      6. Zumba - Family Wellness - 7 PM
-    DOC
+    FargoFitnessDaily::FitnessClass.today
+    # class method FitnessClass today that returns all classes for today
+    # should return an array of classes
   end
 
   def menu

@@ -32,7 +32,7 @@ a class has an instructor
 a class has a url
 a class has a price
 
-build an object that has these properties
+build an object that has these properties. objects should have one responsibility.
 
 
 --------
