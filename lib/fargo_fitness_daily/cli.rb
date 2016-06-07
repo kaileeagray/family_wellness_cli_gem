@@ -12,25 +12,28 @@ class FargoFitnessDaily::CLI
     #get classes from sites - this is fake, for now
     #how will I get this data?
     puts "Today's fitness classes in Fargo:"
-    FargoFitnessDaily::FitnessClass.today
+    @classes = FargoFitnessDaily::FitnessClass.today
+    @classes.each.with_index(1) do |fitclass, i|
+      puts "#{i}. #{fitclass.name} - #{fitclass.location} - #{fitclass.instructor} - #{fitclass.time}"
+    end
     # class method FitnessClass today that returns all classes for today
     # should return an array of classes
+    @classes
   end
 
   def menu
     input = nil
-    while input != "exit"
+    until input == "exit"
       puts "Enter the number of the class you'd like more information on or type list to see the deals again or type exit:"
       input = gets.strip.downcase
-      case input
-      when "1"
-        puts "More info on class 1..."
-      when "2"
-        puts "More info on class 2..."
-      when "list"
+
+      if input.to_i > 0 && input.to_i <= @classes.count
+        fitclass = @classes[input.to_i - 1]
+        puts "#{fitclass.name} - #{fitclass.location} - #{fitclass.instructor} - #{fitclass.time}\n#{fitclass.url} \n\n" 
+      elsif input == "list"
         list_classes
       else
-        puts "Not sure what you want? Type list or exit."
+        puts "Not sure what you want? Type list or exit." unless input == "exit"
       end
     end
   end
