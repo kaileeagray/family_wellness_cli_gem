@@ -16,6 +16,24 @@ class FargoFitnessDaily::FitnessClass
   end
 
   def self.scrape_class_schedules
+    # Sites to search:
+    # Family Wellness
+    # Mojo
+    # Ecce
+    # Jazzercise
+    # Sacred Earth
+    # Spirit Room
+    # Zero Gravity Fitness
+
+      classes = [class_1, class_2, class_3]
+      classes << self.scrape_mojo
+      classes << self.scrape_family_wellness
+      classes << self.scrape_jazzercise
+      classes << self.scrape_ecce
+      classes << self.scrape_sacred_earth
+      classes << self.scrape_zg
+      classes << self.scrape_spirit
+
       class_1 = FargoFitnessDaily::FitnessClass.new
       class_1.name = "Raw Groove"
       class_1.location = "Family Wellness"
@@ -37,6 +55,51 @@ class FargoFitnessDaily::FitnessClass
       class_3.instructor = "Brenda"
       class_3.url = "https://calendar.google.com/calendar/render?cid=4nhnmmset6f8ehr9d798pqhg5s%40group.calendar.google.com#main_7"
 
-      [class_1, class_2, class_3]
+
+      deals
+    end
+
+    def self.scrape_mojo
+      # go to mojo, find the day and classes
+      # instantiate a class for each class offered that day
+      # return an array of classes created here?
+    end
+
+    def self.scrape_family_wellness
+      # go to family wellness, find the day and classes
+      # instantiate a class for each class offered that day
+      doc = Nokogiri::HTML(open("http://www.familywellnessfargo.org/fitness/group-fitness/"))
+
+      # first get day of the week to move to that section of the schedule. require 'date' to use Date
+      #.strftime info http://ruby-doc.org/stdlib-2.1.1/libdoc/date/rdoc/Date.html#method-i-strftime
+      day = Date.today.strftime("%A")
+
+      # using date collect that day's classes and 
+      binding.pry
+    end
+
+    def self.scrape_jazzercise
+      # go to jazzercise, find the day and classes
+      # instantiate a class for each class offered that day
+    end
+
+    def self.scrape_ecce
+      # go to ecce, find the day and classes
+      # instantiate a class for each class offered that day
+    end
+
+    def self.scrape_sacred_earth
+      # go to sacred earth, find the day and classes
+      # instantiate a class for each class offered that day
+    end
+
+    def self.scrape_zg
+      # go to zero gravity, find the day and classes
+      # instantiate a class for each class offered that day
+    end
+
+    def self.scrape_spirit
+      # go to spirit room, find the day and classes
+      # instantiate a class for each class offered that day
     end
 end
