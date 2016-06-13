@@ -1,6 +1,6 @@
 class FargoFitnessDaily::Scraper
 
-  def initialize 
+  def initialize
     # # Sites to search:
     # # Family Wellness
     # # Mojo

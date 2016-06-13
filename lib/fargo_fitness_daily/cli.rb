@@ -5,12 +5,12 @@ class FargoFitnessDaily::CLI
   def call
     FargoFitnessDaily::FitnessClass.today
     list_classes
+    more_info
     goodbye
   end
 
   # def menu
-  #   # puts "Enter all to see all fitness classes at your gyms in Fargo. Enter yoga to see all yoga classes. Enter dance to see all dance classes."
-  #   list_classes
+  #  eventually would like to print by category, location, time
   # end
 
   def list_classes
@@ -20,7 +20,7 @@ class FargoFitnessDaily::CLI
     @classes.each.with_index(1) do |fitclass, i|
       puts "#{i}. #{fitclass.name} - #{fitclass.location} - #{fitclass.instructor} - #{fitclass.time}"
     end
-    more_info
+    # would like to print with location first, then list all classes at location to avoid redundancy
   end
 
 
