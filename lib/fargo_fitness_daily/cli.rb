@@ -3,19 +3,18 @@
 class FargoFitnessDaily::CLI
 
   def call
-    menu
     FargoFitnessDaily::FitnessClass.today
+    list_classes
     goodbye
   end
 
-  def menu
-    # puts "Enter all to see all fitness classes at your gyms in Fargo. Enter yoga to see all yoga classes. Enter dance to see all dance classes."
-    list_classes
-  end
+  # def menu
+  #   # puts "Enter all to see all fitness classes at your gyms in Fargo. Enter yoga to see all yoga classes. Enter dance to see all dance classes."
+  #   list_classes
+  # end
 
   def list_classes
-    #get classes from sites - this is fake, for now
-    #how will I get this data?
+    #get classes from sites
     puts "Today's fitness classes in Fargo:"
     @classes = FargoFitnessDaily::FitnessClass.all
     @classes.each.with_index(1) do |fitclass, i|

@@ -3,7 +3,7 @@ class FargoFitnessDaily::FitnessClass
   @@all = []
   @@all_categories = ["yoga", "yoga flow", "gentle yoga", "dance", "aerobics", "weight lifting", "cardio"]
   def self.today
-    FargoFitnessDaily::Scraper.scrape_class_schedules
+    FargoFitnessDaily::Scraper.new
     # this should return all instances of FitnessClass
     # puts <<-DOC.gsub /^\s*/, ""
     #   1. Raw Groove - Family Wellness- 8 AM

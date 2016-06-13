@@ -1,6 +1,6 @@
 class FargoFitnessDaily::Scraper
 
-  def self.scrape_class_schedules
+  def initialize 
     # # Sites to search:
     # # Family Wellness
     # # Mojo
