@@ -5,6 +5,8 @@ require 'nokogiri'
 require 'pry'
 require 'date'
 require 'watir'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 #this file acts as my environment
 require_relative "./fargo_fitness_daily/version"

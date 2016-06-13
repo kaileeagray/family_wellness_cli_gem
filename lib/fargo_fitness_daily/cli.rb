@@ -3,6 +3,7 @@
 class FargoFitnessDaily::CLI
 
   def call
+    puts "Please wait while the classes load. This may take up to xx minutes."
     FargoFitnessDaily::FitnessClass.today
     list_classes
     more_info
@@ -33,7 +34,7 @@ class FargoFitnessDaily::CLI
       if input.to_i > 0 && input.to_i <= @classes.count
         fitclass = @classes[input.to_i - 1]
         puts "Name: #{fitclass.name} \nLocation: #{fitclass.location} \nInstructor: #{fitclass.instructor} \nTime: #{fitclass.time}\nURL: #{fitclass.url}"
-        puts "This class has the following tags:"
+        # puts "This class has the following tags:"
         # fitclass.categories.each do |category|
         #   puts category
         # end
