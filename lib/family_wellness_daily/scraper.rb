@@ -1,5 +1,4 @@
 class FamilyWellnessDaily::Scraper
-  attr_accessor :titles
 
   def initialize
     scrape_family_wellness
