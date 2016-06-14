@@ -14,7 +14,7 @@ class FamilyWellnessDaily::CLI
   def menu
   input = nil
     until input == "exit"
-      puts "Enter any fitness class category to view classes of that category. Enter help to view all categories. Enter exit to leave."
+      puts "Enter any fitness class category to view classes of that category. Enter help to view categories. Enter exit to leave."
       input = gets.strip.downcase
       puts "-----------------------------------------------------------------------------------------------------------------------\n\n"
       if input == "help"

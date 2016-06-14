@@ -4,20 +4,19 @@ Welcome to your Family Wellness Daily. This gem scrapes the Family Wellness sche
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add to your Gemfile:
 
+  gem 'family_wellness_daily'
 
-And then execute:
+Or install from RubyGems:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install family_wellness_daily
+  gem install family_wellness_daily
 
 ## Usage
 
-TODO: Write usage instructions here
+Require the Gem:
+
+  require 'family_wellness_daily'
 
 ## Development
 
