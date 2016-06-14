@@ -16,7 +16,7 @@ class FamilyWellnessDaily::CLI
     until input == "exit"
       puts "Enter any fitness class category to view classes of that category. Enter help to view all categories. Enter exit to leave."
       input = gets.strip.downcase
-      puts "----------------------------------------------------------------------------------------------------------"
+      puts "-----------------------------------------------------------------------------------------------------------------------\n\n"
       if input == "help"
         puts "Enter any of the following categories to see which classes of that category are offered today."
         list_all_categories
@@ -36,11 +36,11 @@ class FamilyWellnessDaily::CLI
   end
 
   def list_all_categories
-    puts "----------------------------------------------------------------------------------------------------------"
+    puts "-----------------------------------------------------------------------------------------------------------------------"
     FamilyWellnessDaily::FitnessClass.categories.each do |category|
       puts category
     end
-    puts "----------------------------------------------------------------------------------------------------------"
+    puts "-----------------------------------------------------------------------------------------------------------------------"
 
   end
 
@@ -50,7 +50,8 @@ class FamilyWellnessDaily::CLI
       puts "\n\nToday's #{@current_category} fitness classes at Family Wellness include:"
       list_classes
     else
-      puts "\n\n Sorry there are no #{@current_category} classes today."
+      puts "\n\nSorry there are no #{@current_category} classes today."
+      puts "-----------------------------------------------------------------------------------------------------------------------\n\n"
       menu
     end
   end
@@ -58,11 +59,17 @@ class FamilyWellnessDaily::CLI
   def list_all_classes
     puts "Today's fitness classes at Family Wellness in Fargo:"
     @classes = FamilyWellnessDaily::FitnessClass.all
-    list_classes
+    if @classes.count > 0
+      list_classes
+    else
+      puts "\n\nSorry there are no classes today."
+      puts "-----------------------------------------------------------------------------------------------------------------------\n\n"
+      menu
+    end
   end
 
   def list_classes
-    puts "----------------------------------------------------------------------------------------------------------"
+    puts "-----------------------------------------------------------------------------------------------------------------------"
     @classes.each.with_index(1) do |fitclass, i|
       puts "#{i}. #{fitclass.name} - #{fitclass.time}"
     end
@@ -75,7 +82,7 @@ class FamilyWellnessDaily::CLI
     until input == "exit"
       puts "\n\nEnter the number of the class you'd like more information on, type menu to return to starting menu, or type exit:"
       input = gets.strip.downcase
-      puts "\n\n"
+      puts "-----------------------------------------------------------------------------------------------------------------------\n\n"
       if input.to_i > 0 && input.to_i <= @classes.count
         fitclass = @classes[input.to_i - 1]
         puts "Name: #{fitclass.name} \nStudio: #{fitclass.studio} \nInstructor: #{fitclass.instructor} \nTime: #{fitclass.time}"
