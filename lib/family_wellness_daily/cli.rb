@@ -30,7 +30,7 @@ class FamilyWellnessDaily::CLI
         puts "Not sure what to input? Type help to get more info. Type exit to leave. Type view all to see all classes."
       elsif input == "exit"
         #added to allow menu to keep looping but not force user to type exit more than once
-        exit!
+        goodbye
       end
     end
   end
@@ -95,7 +95,7 @@ class FamilyWellnessDaily::CLI
         menu
       elsif input == "exit"
       #added to allow more_info to keep looping but not force user to type exit more than once
-          exit!
+          goodbye
       else
         puts "Not sure what you want? Type menu, exit, or the number of of class you'd like more info about." unless input == "exit"
       end
@@ -103,7 +103,8 @@ class FamilyWellnessDaily::CLI
   end
 
   def goodbye
-    puts "Have fun at class! You'll feel great after! See you tomorrow!"
+    puts "Have fun at class! You'll feel great after! See you tomorrow!\n\n"
+    exit!
   end
 
 
