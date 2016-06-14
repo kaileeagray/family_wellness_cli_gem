@@ -37,6 +37,12 @@ class FamilyWellnessDaily::FitnessClass
     classes_of_category
   end
 
+  def self.find_by_name_time(name, time)
+    @@all.detect do |fitclass|
+      fitclass.name == name && fitclass.time == time
+    end
+  end
+
   def save
     @@all << self
   end

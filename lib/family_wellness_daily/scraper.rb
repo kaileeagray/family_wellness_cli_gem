@@ -31,17 +31,24 @@ class FamilyWellnessDaily::Scraper
     # http://stackoverflow.com/questions/30746397/can-nokogiri-interpret-javascript-web-scraping for approach
     # with Watir, phantomjs
 
-    @document = get_document("http://www.familywellnessfargo.org/fitness/group-fitness/")
+    document = get_document("http://www.familywellnessfargo.org/fitness/group-fitness/")
 
 
-    @document.css("div#GXP#{get_day}").css("div.GXPEntry").each do |fitclass|
-      new_class = FamilyWellnessDaily::FitnessClass.new
-      new_class.name = fitclass.css("div.GXPTitle").text.strip
-      new_class.time = fitclass.css("div.GXPTime").text.strip
-      new_class.instructor = fitclass.css("div.GXPInstructor").text.strip
-      new_class.studio = fitclass.css("div.GXPStudio").text.strip
-      new_class.assign_categories
-      new_class.save
+    document.css("div#GXP#{get_day}").css("div.GXPEntry").each do |fitclass|
+      # the bodypump class has two instructors but is listed as two classes. add conditional to combine instructors into one class.
+      #in case there are two bodypump classes at different times, we'll check that the name and time match
+      if fitclass.css("div.GXPTitle").text.strip == "BODYPUMP ™ Support Instructor"
+        bodypump_class = FamilyWellnessDaily::FitnessClass.find_by_name_time("BODYPUMP ™", fitclass.css("div.GXPTime").text.strip)
+        bodypump_class.instructor += " & " + fitclass.css("div.GXPInstructor").text.strip unless bodypump_class == nil
+      else
+        new_class = FamilyWellnessDaily::FitnessClass.new
+        new_class.name = fitclass.css("div.GXPTitle").text.strip
+        new_class.time = fitclass.css("div.GXPTime").text.strip
+        new_class.instructor = fitclass.css("div.GXPInstructor").text.strip
+        new_class.studio = fitclass.css("div.GXPStudio").text.strip
+        new_class.assign_categories
+        new_class.save
+      end
     end
 
   end
