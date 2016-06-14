@@ -1,4 +1,5 @@
 class FamilyWellnessDaily::Scraper
+  attr_accessor :titles
 
   def initialize
     scrape_family_wellness
@@ -30,9 +31,10 @@ class FamilyWellnessDaily::Scraper
     # http://stackoverflow.com/questions/30746397/can-nokogiri-interpret-javascript-web-scraping for approach
     # with Watir, phantomjs
 
-    document = get_document("http://www.familywellnessfargo.org/fitness/group-fitness/")
+    @document = get_document("http://www.familywellnessfargo.org/fitness/group-fitness/")
 
-    document.css("div#GXP#{get_day}").css("div.GXPEntry").each do |fitclass|
+
+    @document.css("div#GXP#{get_day}").css("div.GXPEntry").each do |fitclass|
       new_class = FamilyWellnessDaily::FitnessClass.new
       new_class.name = fitclass.css("div.GXPTitle").text.strip
       new_class.time = fitclass.css("div.GXPTime").text.strip
@@ -43,5 +45,7 @@ class FamilyWellnessDaily::Scraper
     end
 
   end
+
+
 
 end

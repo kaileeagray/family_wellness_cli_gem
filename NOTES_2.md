@@ -8,3 +8,7 @@ Goals:
 
 5. be able to grab description by making phantomjs click the class linkj
 6. instead of loading all classes, load only the category requested to speed up process
+
+7. maybe there is a better way to grab all titles and assign categories?
+
+8. can the user request multiple categories?
