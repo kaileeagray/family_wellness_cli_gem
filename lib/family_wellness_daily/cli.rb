@@ -27,16 +27,17 @@ class FamilyWellnessDaily::CLI
   def more_info
     input = nil
     until input == "exit"
-      puts "Enter the number of the class you'd like more information on, type list to see the classes again, or type exit:"
+      puts "\n\nEnter the number of the class you'd like more information on, type list to see the classes again, or type exit:"
       input = gets.strip.downcase
-
+      puts "\n\n"
       if input.to_i > 0 && input.to_i <= @classes.count
         fitclass = @classes[input.to_i - 1]
         puts "Name: #{fitclass.name} \nStudio: #{fitclass.studio} \nInstructor: #{fitclass.instructor} \nTime: #{fitclass.time}"
-        puts "This class has the following tags:"
+        tags = ""
         fitclass.categories.each do |category|
-           puts category
+           tags << category + ", "
          end
+         puts "This class has the following tags: #{tags.chop.chop}"
         puts "\n\n"
       elsif input == "list"
         list_classes

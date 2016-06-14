@@ -28,22 +28,10 @@ what is a fitness class?
 
 a class has a name
 a class has an instructor
-a class has a url
+a class has a studio
 a class has many categories
 
 build an object that has these properties. objects should have one responsibility.
-
-
---------
-
-Sites to search:
-Family Wellness
-Mojo
-Ecce
-Jazzercise
-Sacred Earth
-Spirit Room
-Zero Gravity Fitness
 
 
 -------------
