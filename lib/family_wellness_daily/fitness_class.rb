@@ -21,19 +21,29 @@ class FamilyWellnessDaily::FitnessClass
     # this should return all instances of FitnessClass
   end
 
-  def save
-    @@all << self
-  end
-
   def self.all
     @@all
+  end
+
+  def self.categories
+    @@hash_title_categories.values.flatten.uniq
+  end
+
+  def self.collect_by_category(category)
+    classes_of_category = []
+    @@all.each do |fitclass|
+      classes_of_category << fitclass if fitclass.categories.include?(category)
+    end
+    classes_of_category
+  end
+
+  def save
+    @@all << self
   end
 
   def assign_categories
     #class titles taken from website by scraping all titles and then manually assigning categories in console
     self.categories = @@hash_title_categories[self.name]
   end
-
-
 
 end
