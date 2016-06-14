@@ -1,4 +1,9 @@
-require 'capybara/poltergeist'
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
+require 'json'
+require 'icalendar'
+require 'open-uri'
 
 class FargoFitnessDaily::Scraper
 
@@ -40,13 +45,14 @@ class FargoFitnessDaily::Scraper
     # # classes << scrape_mojo
     #
     # # classes <<
-    # # classes << scrape_ecce
+    # # classes <<
     # # classes << scrape_sacred_earth
     # # classes << scrape_zg
     # # classes << scrape_spirit
     #
     # classes
     #scrape_mojo
+     scrape_ecce
     scrape_jazzercise
     scrape_family_wellness
 
@@ -72,16 +78,40 @@ class FargoFitnessDaily::Scraper
     # instantiate a class for each class offered that day
     #http://conkuer.com/2014/05/29/headless-web-browsing-for-complex-website-scraping.html
     # ^^ used source above to help scrape mindbodyonline
-    session = Capybara::Session.new(:poltergeist)
-    session.visit "https://clients.mindbodyonline.com/ASP/home.asp?studioid=43924"
-    sleep 4
+    p1 = open('https://clients.mindbodyonline.com/classic/home?studioid=43924')
 
-    page = session.within_frame 'mainFrame' do
-      Nokogiri::HTML(session.html)
-    end
+    # Save the cookie
+    cookie = p1.meta['set-cookie'].split('; ',2)[0]
 
-    even_rows = page.css('.evenRow')
-    odd_rows = page.css('.oddRow')
+    # Open the JSON data page using our cookie we just obtained
+    p2 = open('https://clients.mindbodyonline.com/classic/home?studioid=43924','Cookie' => cookie)
+
+    # Get the raw JSON
+    json = p2.read
+
+    # Parse it
+    data = JSON.parse(json)
+
+    # Feed the html portion to Nokogiri
+    doc = Nokogiri.parse(data['html'])
+
+    #
+    # cookie = open("https://clients.mindbodyonline.com/classic/home?studioid=43924")
+    # cookie2 = cookie.meta['set-cookie']
+    # cookie3 = cookie2.match(/(?<=Secure;, )(.*)(?= p)/).to_s
+    # doc = Nokogiri::HTML(open("https://clients.mindbodyonline.com/classic/home?studioid=43924", "Cookie" => cookie3))
+
+    #
+    # session = Capybara::Session.new(:poltergeist)
+    # session.visit "https://clients.mindbodyonline.com/ASP/home.asp?studioid=43924"
+    # sleep 4
+    #
+    # page = session.within_frame 'mainFrame' do
+    #   Nokogiri::HTML(session.html)
+    # end
+    #
+    # even_rows = page.css('.evenRow')
+    # odd_rows = page.css('.oddRow')
 
     binding.pry
     #
@@ -154,6 +184,11 @@ class FargoFitnessDaily::Scraper
     # this is a google calendar
     # go to ecce, find the day and classes
     # instantiate a class for each class offered that day
+    doc = get_document("http://www.ecceyoga.com/schedule/")
+
+
+    binding.pry
+
   end
 
   def scrape_sacred_earth
