@@ -16,10 +16,6 @@ class FamilyWellnessDaily::FitnessClass
                       "Mat Pilates II"=>["pilates", "strength"], "Tabata Booty"=>["interval training", "cardio", "strength"], "Deck of Cards"=>["interval training", "cardio", "strength"],
                       "Tabata Power"=>["interval training", "cardio", "strength"], "Yoga Strength"=>["yoga", "strength"], "INSANITY (30 min)"=>["interval training", "cardio", "strength"],
                        "Yogaflow"=>["yoga", "cardio"], "Cycle Sculpt"=>["cycling", "strength", "cardio"], "Candle Light Yoga"=>["yoga"], "Zumba Step"=>["dance", "cardio"]}
-  def self.today
-    FamilyWellnessDaily::Scraper.new
-    # this should return all instances of FitnessClass
-  end
 
   def self.all
     @@all
@@ -30,11 +26,9 @@ class FamilyWellnessDaily::FitnessClass
   end
 
   def self.collect_by_category(category)
-    classes_of_category = []
-    @@all.each do |fitclass|
-      classes_of_category << fitclass if fitclass.categories.include?(category)
+    @@all.select do |fitclass|
+      fitclass.categories.include?(category)
     end
-    classes_of_category
   end
 
   def self.find_by_name_time(name, time)

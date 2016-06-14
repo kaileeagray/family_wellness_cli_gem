@@ -5,7 +5,7 @@ class FamilyWellnessDaily::CLI
   def call
     puts "Please wait while the classes load. This may take up to 1 minute.\n\n"
     #get classes from site
-    FamilyWellnessDaily::FitnessClass.today
+    FamilyWellnessDaily::Scraper.new
     #after classes have loaded, ask user how to view classes
     menu
     goodbye
