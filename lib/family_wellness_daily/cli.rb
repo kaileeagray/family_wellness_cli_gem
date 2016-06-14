@@ -38,7 +38,6 @@ class FamilyWellnessDaily::CLI
            tags << category + ", "
          end
          puts "This class has the following tags: #{tags.chop.chop}"
-        puts "\n\n"
       elsif input == "list"
         list_classes
       else
