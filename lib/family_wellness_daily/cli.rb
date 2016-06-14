@@ -5,7 +5,7 @@ class FamilyWellnessDaily::CLI
   def call
     puts "Please wait while the classes load. This may take up to xx minutes."
     FamilyWellnessDaily::FitnessClass.today
-    list_classes
+    list_all_classes
     more_info
     goodbye
   end
@@ -14,7 +14,7 @@ class FamilyWellnessDaily::CLI
   #   would like to print by category or time
   # end
 
-  def list_classes
+  def list_all_classes
     #get classes from sites
     puts "Today's fitness classes at Family Wellness in Fargo:"
     @classes = FamilyWellnessDaily::FitnessClass.all
