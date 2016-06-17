@@ -1,7 +1,6 @@
 class FamilyWellnessDaily::FitnessClass
   attr_accessor :name, :time, :instructor, :categories, :studio
   @@all = []
-  @@all_categories = ["cardio", "barre", "bodypump", "strength", "dance", "cycling", "interval training", "boxing", "yoga", "water exercise", "senior fitness", "medical"]
   @@hash_title_categories = {"Circuit"=>["interval training", "cardio", "strength"], "Spinsanity"=>["cycling", "cardio"],
                       "Zumba ®"=>["dance", "cardio"], "Hydro Power"=>["water exercise", "strength", "cardio"],
                       "Hydro Fitness"=>["water exercise", "strength", "cardio"], "Gold N Fit"=>["senior fitness"],
@@ -16,6 +15,7 @@ class FamilyWellnessDaily::FitnessClass
                       "Mat Pilates II"=>["pilates", "strength"], "Tabata Booty"=>["interval training", "cardio", "strength"], "Deck of Cards"=>["interval training", "cardio", "strength"],
                       "Tabata Power"=>["interval training", "cardio", "strength"], "Yoga Strength"=>["yoga", "strength"], "INSANITY (30 min)"=>["interval training", "cardio", "strength"],
                        "Yogaflow"=>["yoga", "cardio"], "Cycle Sculpt"=>["cycling", "strength", "cardio"], "Candle Light Yoga"=>["yoga"], "Zumba Step"=>["dance", "cardio"]}
+
 
   def self.all
     @@all
