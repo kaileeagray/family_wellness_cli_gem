@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require "./lib/family_wellness_daily"
+require_relative "../lib/family_wellness_daily"
 
 FamilyWellnessDaily::CLI.new.call

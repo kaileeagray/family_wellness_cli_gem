@@ -1,11 +1,7 @@
 class FamilyWellnessDaily::Scraper
 
-  def initialize
-    scrape_family_wellness
-    FamilyWellnessDaily::FitnessClass.all
-  end
 
-  def get_document(url)
+  def self.get_document(url)
     # http://stackoverflow.com/questions/30746397/can-nokogiri-interpret-javascript-web-scraping for approach
     # with Watir, phantomjs
     browser = Watir::Browser.new(:phantomjs)
@@ -14,14 +10,14 @@ class FamilyWellnessDaily::Scraper
   end
 
 
-  def get_day
+  def self.get_day
     # first get day of the week to move to that section of the schedule. require 'date' to use Date
     #.strftime info http://ruby-doc.org/stdlib-2.1.1/libdoc/date/rdoc/Date.html#method-i-strftime
     Date.today.strftime("%A")
   end
 
 
-  def scrape_family_wellness
+  def self.scrape_family_wellness
     # go to family wellness, find the day and classes
     # instantiate a class for each class offered that day
     document = get_document("http://www.familywellnessfargo.org/fitness/group-fitness/")

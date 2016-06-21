@@ -5,7 +5,7 @@ class FamilyWellnessDaily::CLI
   def call
     puts "Please wait while the classes load. This may take up to 1 minute.\n\n"
     #get classes from site
-    FamilyWellnessDaily::Scraper.new
+    FamilyWellnessDaily::Scraper.scrape_family_wellness
     #after classes have loaded, ask user how to view classes
     menu
     goodbye
@@ -23,16 +23,15 @@ class FamilyWellnessDaily::CLI
         puts "Enter any of the following categories to see which classes of that category are offered today."
         list_all_categories
         puts "You can also enter view all to see all the classes at Family Wellness today or you can type exit.\n\n"
-      elsif input == "view all" || input == "view_all" || input == "view-all"
+      elsif input.gsub(/[\-\s\_]/, '') == "viewall"
         list_all_classes
-      elsif input != "exit" && FamilyWellnessDaily::FitnessClass.categories.include?(input)
+      elsif input == "exit"
+        goodbye
+      elsif FamilyWellnessDaily::FitnessClass.categories.include?(input)
         @current_category = input
         view_by_category
-      elsif input != "exit"
+      else
         puts "Not sure what to input? Type help to get more info. Type exit to leave. Type view all to see all classes."
-      elsif input == "exit"
-        #added to allow menu to keep looping but not force user to type exit more than once
-        goodbye
       end
 
     end
